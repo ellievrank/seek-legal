@@ -1,0 +1,113 @@
+---
+
+---
+
+<section
+  id="resources"
+  class="py-24 bg-white border-t border-gray-100 relative z-20"
+>
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="mb-16">
+      <div class="inline-block bg-[#cde4fd] px-8 py-2 rounded-full mb-6">
+        <h2 class="text-4xl font-extrabold text-black tracking-tight">
+          Essential Resources
+        </h2>
+      </div>
+      <p class="text-xl text-gray-500 max-w-2xl ml-2">
+        Plain-language guides designed to empower you to understand your rights.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <a
+        href="https://cichandbook.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="resource-card group bg-[#eaddf7] border-transparent hover:border-[#741b25]"
+      >
+        <div class="flex justify-between items-start mb-8">
+          <div
+            class="w-16 h-16 rounded-2xl bg-white flex items-center justify-center text-3xl shadow-sm group-hover:scale-110 transition-transform duration-300"
+          >
+            📚
+          </div>
+          <svg
+            class="w-6 h-6 text-gray-500 group-hover:text-[#741b25] transition-colors"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+            ></path></svg
+          >
+        </div>
+
+        <h3
+          class="text-2xl font-bold text-black mb-3 group-hover:text-[#741b25] transition-colors"
+        >
+          CIC Handbook WA
+        </h3>
+        <p class="text-gray-700 font-medium leading-relaxed">
+          A comprehensive, plain-language guide for Criminal Injuries
+          Compensation applicants in Western Australia.
+        </p>
+      </a>
+
+      <div class="resource-card-locked relative overflow-hidden">
+        <div class="absolute top-8 right-8 text-gray-300">
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+            ></path></svg
+          >
+        </div>
+
+        <div class="flex justify-between items-start mb-8">
+          <div
+            class="w-16 h-16 rounded-2xl bg-gray-100 flex items-center justify-center text-3xl grayscale opacity-50"
+          >
+            🛡️
+          </div>
+        </div>
+
+        <h3 class="text-2xl font-bold text-gray-400 mb-3">More Guides</h3>
+        <p class="text-gray-400 font-medium leading-relaxed">
+          We are currently working on more guides for a more accessible future.
+          Check back soon.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .resource-card {
+    display: block;
+    border-width: 1px;
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    transition: all 0.3s ease;
+  }
+  .resource-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -5px rgba(234, 221, 247, 0.6);
+  }
+
+  .resource-card-locked {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    cursor: not-allowed;
+  }
+</style>

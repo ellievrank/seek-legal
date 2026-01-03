@@ -1,4 +1,6 @@
 ---
+import Navbar from "../components/Navbar.astro";
+import Resources from "../components/Resources.astro";
 import "../styles/global.css";
 ---
 
@@ -15,18 +17,34 @@ import "../styles/global.css";
     />
   </head>
   <body>
+    <Navbar />
+
     <div class="stage" id="stage">
       <div class="hero">
         <div class="pill-badge">
           <span class="font-semibold text-gray-500">Coming </span>
-          <span class="font-bold" style="color: #4a90e2;">2026</span>
+          <span class="font-bold" style="color: #741b25;">2026</span>
         </div>
 
         <h1>The new hub for accessible Australian justice.</h1>
 
-        <a href="#" class="cta-button"> Get Started </a>
+        <a href="#resources" class="cta-button"> Get Started </a>
       </div>
     </div>
+
+    <Resources />
+
+    <footer class="bg-gray-50 border-t border-gray-200 py-12">
+      <div
+        class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400 font-medium"
+      >
+        <p>&copy; 2026 Seek Legal.</p>
+        <div class="flex gap-6 mt-4 md:mt-0">
+          <a href="#" class="hover:text-[#741b25] transition">Privacy</a>
+          <a href="#" class="hover:text-[#741b25] transition">Terms</a>
+        </div>
+      </div>
+    </footer>
 
     <style is:global>
       :root {
@@ -37,16 +55,16 @@ import "../styles/global.css";
 
       body {
         margin: 0;
-        height: 100vh;
+        min-height: 100vh;
         background: var(--bg);
-        overflow: hidden;
         font-family: "Inter", sans-serif;
       }
 
+      /* Hero Stage */
       .stage {
         position: relative;
         width: 100%;
-        height: 100%;
+        height: 100vh;
         overflow: hidden;
       }
 
@@ -104,6 +122,7 @@ import "../styles/global.css";
         box-shadow: 0 6px 20px rgba(234, 221, 247, 0.8);
       }
 
+      /* Floating Icons */
       .icon-wrap {
         position: absolute;
         width: 80px;
@@ -114,7 +133,6 @@ import "../styles/global.css";
         will-change: transform;
         z-index: 1;
         animation: floaty 6s ease-in-out infinite alternate;
-
         font-size: 3rem;
         user-select: none;
         cursor: default;
@@ -155,7 +173,6 @@ import "../styles/global.css";
       const DAMPING = 0.96;
       const MOUSE_RADIUS = 200;
       const MOUSE_STRENGTH = 0.3;
-
       const ZONE_RX = 380;
       const ZONE_RY = 180;
 
@@ -184,7 +201,6 @@ import "../styles/global.css";
 
       function createIcons() {
         if (!stage) return;
-
         const rect = stage.getBoundingClientRect();
         const cx = rect.width / 2;
         const cy = rect.height / 2;
@@ -195,25 +211,19 @@ import "../styles/global.css";
         for (let i = 0; i < COUNT; i++) {
           const wrap = document.createElement("div");
           wrap.className = "icon-wrap";
-
           wrap.innerText = pick(emojis);
-
           wrap.style.opacity = rand(0.4, 0.8).toString();
           wrap.style.transform = `rotate(${rand(-20, 20)}deg)`;
-
           stage.appendChild(wrap);
 
           let homeX = 0,
             homeY = 0,
             valid = false;
           let attempts = 0;
-          let currentSpacing = ICON_SPACING;
-
           while (!valid && attempts < 500) {
             const padding = 60;
             homeX = rand(padding, rect.width - padding);
             homeY = rand(padding, rect.height - padding);
-
             const inZone = isInsideOval(
               homeX,
               homeY,
@@ -222,7 +232,6 @@ import "../styles/global.css";
               ZONE_RX + 50,
               ZONE_RY + 50
             );
-
             if (!inZone) {
               let tooClose = false;
               for (const other of items) {
@@ -230,19 +239,15 @@ import "../styles/global.css";
                   homeX - other.homeX,
                   homeY - other.homeY
                 );
-                if (dist < currentSpacing) {
+                if (dist < ICON_SPACING) {
                   tooClose = true;
                   break;
                 }
               }
               if (!tooClose) valid = true;
             }
-
             attempts++;
-            if (attempts > 200) currentSpacing = ICON_SPACING * 0.8;
-            if (attempts > 350) currentSpacing = ICON_SPACING * 0.6;
           }
-
           items.push({
             el: wrap as HTMLElement,
             homeX: valid ? homeX : cx,
@@ -276,7 +281,6 @@ import "../styles/global.css";
         for (const p of items) {
           let targetX = p.homeX;
           let targetY = p.homeY;
-
           const dx = p.x - mouse.x;
           const dy = p.y - mouse.y;
           const dist = Math.hypot(dx, dy);
@@ -300,7 +304,6 @@ import "../styles/global.css";
             let nx = dxo / distOval;
             let ny = scaledDy / distOval;
             ny /= scaleY;
-
             const pushFactor = overlap * 1.5;
             targetX += nx * pushFactor;
             targetY += ny * pushFactor;
@@ -308,7 +311,6 @@ import "../styles/global.css";
 
           const ax = (targetX - p.x) * SPRING_K;
           const ay = (targetY - p.y) * SPRING_K;
-
           p.vx += ax / MASS;
           p.vy += ay / MASS;
           p.vx *= DAMPING;
