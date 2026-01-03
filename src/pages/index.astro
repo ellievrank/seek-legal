@@ -1,12 +1,12 @@
 ---
-// src/pages/index.astro
+import "../styles/global.css";
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Seek Legal | Coming Soon</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Seek Legal | Interactive</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,207 +14,340 @@
       rel="stylesheet"
     />
   </head>
-  <body
-    class="bg-white text-slate-900 font-['Space_Grotesk',sans-serif] antialiased selection:bg-[#eaddf7] selection:text-[#741b25]"
-  >
-    <nav
-      class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100"
-    >
-      <div
-        class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
-      >
-        <a
-          href="/"
-          class="font-bold text-xl tracking-tight text-[#741b25] hover:opacity-80 transition"
-        >
-          Seek Legal.
-        </a>
-        <div class="hidden md:flex space-x-8 text-sm font-bold text-gray-500">
-          <span class="cursor-not-allowed opacity-50">Resources</span>
-          <span class="cursor-not-allowed opacity-50">About</span>
-          <a
-            href="mailto:ellievrank@gmail.com"
-            class="hover:text-[#741b25] transition">Contact</a
-          >
-        </div>
-        <div
-          class="bg-gray-100 text-gray-400 px-5 py-2.5 rounded-full text-sm font-semibold cursor-not-allowed"
-        >
-          Coming Soon
-        </div>
+  <body>
+    <div class="stage" id="stage">
+      <div class="vignette"></div>
+
+      <div class="hero">
+        <h1>
+          <span style="color: #eaddf7;">Seek</span>
+          <span style="color: #ffffff;">Legal</span>
+        </h1>
+        <p>Mouse over to interact. Access to justice for everyone.</p>
+        <a href="#" class="cta-button">Enter Hub</a>
       </div>
-    </nav>
+    </div>
 
-    <main class="pt-40 pb-20 px-6 overflow-hidden">
-      <div
-        class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
-      >
-        <div class="flex flex-col relative z-10">
-          <span
-            class="mb-6 inline-flex items-center gap-2 w-fit px-4 py-1.5 rounded-full bg-[#741b25]/10 border border-[#741b25]/20 text-xs font-bold text-[#741b25] uppercase tracking-widest"
-          >
-            <span class="w-2 h-2 rounded-full bg-[#741b25] animate-pulse"
-            ></span>
-            Under Construction
-          </span>
+    <style is:global>
+      :root {
+        --bg: #741b25;
+        --fg: #ffffff;
+        --muted: rgba(255, 255, 255, 0.8);
+      }
 
-          <h1
-            class="text-8xl md:text-[10rem] font-bold leading-[0.8] tracking-tighter select-none"
-          >
-            <span class="text-[#eaddf7] block">Seek</span>
-            <span class="text-black block -ml-2">Legal</span>
-          </h1>
+      body {
+        margin: 0;
+        height: 100vh;
+        background: var(--bg);
+        overflow: hidden;
+        font-family: "Space Grotesk", sans-serif;
+      }
 
-          <p
-            class="mt-10 text-xl md:text-2xl text-gray-600 font-medium max-w-lg leading-relaxed"
-          >
-            We are currently building the hub for accessible Australian justice.
-            Check back soon for plain-language guides and resources.
-          </p>
+      .stage {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
 
-          <div class="mt-10 flex flex-col sm:flex-row gap-4 max-w-md">
-            <input
-              type="email"
-              placeholder="Enter your email for updates..."
-              class="flex-1 px-6 py-4 bg-gray-50 border-2 border-gray-100 rounded-2xl text-gray-900 focus:outline-none focus:border-[#eaddf7] transition"
-            />
-            <button
-              class="px-8 py-4 bg-[#741b25] text-white rounded-2xl font-bold hover:shadow-xl hover:-translate-y-1 transition duration-300"
-            >
-              Notify Me
-            </button>
-          </div>
-          <p class="mt-4 text-sm text-gray-400">
-            We respect your privacy. No spam.
-          </p>
-        </div>
+      .hero {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        z-index: 10;
+        pointer-events: none;
+        padding: 20px;
+      }
 
-        <div class="relative flex justify-center lg:justify-end mt-12 lg:mt-0">
-          <div
-            class="absolute top-10 right-10 w-72 h-72 bg-[#eaddf7] rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse"
-          >
-          </div>
-          <div
-            class="absolute bottom-10 left-10 w-72 h-72 bg-[#cde4fd] rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse animation-delay-2000"
-          >
-          </div>
+      .hero h1 {
+        margin: 0 0 16px;
+        font-weight: 700;
+        font-size: 80px;
+        line-height: 0.9;
+        letter-spacing: -0.04em;
+      }
 
-          <svg
-            class="w-72 h-72 md:w-[500px] md:h-[500px] relative z-10 animate-[float_6s_ease-in-out_infinite]"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle
-              cx="11"
-              cy="11"
-              r="7"
-              stroke="#cde4fd"
-              stroke-width="2.5"
-              class="fill-white/10 backdrop-blur-[2px]"></circle>
+      .hero p {
+        margin: 0;
+        font-size: 20px;
+        color: var(--muted);
+        font-weight: 400;
+        max-width: 500px;
+        line-height: 1.5;
+      }
 
-            <path
-              d="M20 20L16.65 16.65"
-              stroke="#cde4fd"
-              stroke-width="4.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
+      .cta-button {
+        margin-top: 30px;
+        pointer-events: auto;
+        background: white;
+        color: #741b25;
+        padding: 12px 30px;
+        border-radius: 50px;
+        font-weight: bold;
+        text-decoration: none;
+        transition: transform 0.2s;
+      }
+      .cta-button:hover {
+        transform: scale(1.05);
+      }
 
-            <path
-              d="M8 8C8 8 9.5 6 12 6"
-              stroke="#cde4fd"
-              stroke-width="2"
-              stroke-linecap="round"
-              class="opacity-80"></path>
-          </svg>
-        </div>
-      </div>
-    </main>
+      .icon-wrap {
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        will-change: transform;
+        z-index: 1;
+        animation: floaty 6s ease-in-out infinite alternate;
+      }
 
-    <section class="py-24 bg-gray-50/50 border-t border-gray-100">
-      <div class="max-w-7xl mx-auto px-6">
-        <div class="flex flex-col md:flex-row justify-between items-end mb-12">
-          <h2 class="text-4xl font-bold text-gray-900 opacity-50">
-            Essential Resources
-          </h2>
-          <span
-            class="hidden md:block text-gray-400 font-bold uppercase tracking-widest text-sm"
-            >Launch Date: 2026</span
-          >
-        </div>
+      .icon-wrap:nth-child(odd) {
+        animation-duration: 7s;
+      }
+      .icon-wrap:nth-child(even) {
+        animation-duration: 8s;
+      }
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-          <div
-            class="bg-white/60 p-8 rounded-[2rem] border border-gray-100 shadow-sm opacity-70 grayscale-[0.5] hover:opacity-100 hover:grayscale-0 transition duration-500 cursor-wait relative overflow-hidden"
-          >
-            <div class="absolute top-6 right-6 text-2xl opacity-50">🔒</div>
+      .icon-svg {
+        width: 100%;
+        height: 100%;
+        filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.2));
+      }
 
-            <div
-              class="w-14 h-14 bg-[#eaddf7] rounded-2xl flex items-center justify-center mb-6 text-2xl"
-            >
-              📚
-            </div>
-            <h3 class="text-2xl font-bold mb-3">CIC Handbook WA</h3>
-            <p class="text-gray-500 leading-relaxed">
-              A guide for applicants in Western Australia.
-            </p>
-          </div>
-
-          <div
-            class="bg-white/60 p-8 rounded-[2rem] border border-gray-100 shadow-sm opacity-70 grayscale-[0.5] hover:opacity-100 hover:grayscale-0 transition duration-500 cursor-wait relative overflow-hidden"
-          >
-            <div class="absolute top-6 right-6 text-2xl opacity-50">🔒</div>
-            <div
-              class="w-14 h-14 bg-[#cde4fd] rounded-2xl flex items-center justify-center mb-6 text-2xl"
-            >
-              ⚖️
-            </div>
-            <h3 class="text-2xl font-bold mb-3">Legal Glossary</h3>
-            <p class="text-gray-500 leading-relaxed">
-              Coming soon. Simple definitions for complex legal terms.
-            </p>
-          </div>
-
-          <div
-            class="bg-white/60 p-8 rounded-[2rem] border border-gray-100 shadow-sm opacity-70 grayscale-[0.5] hover:opacity-100 hover:grayscale-0 transition duration-500 cursor-wait relative overflow-hidden"
-          >
-            <div class="absolute top-6 right-6 text-2xl opacity-50">🔒</div>
-            <div
-              class="w-14 h-14 bg-[#741b25] text-white rounded-2xl flex items-center justify-center mb-6 text-2xl"
-            >
-              🔔
-            </div>
-            <h3 class="text-2xl font-bold mb-3">More Guides</h3>
-            <p class="text-gray-500 leading-relaxed">
-              We are working on resources for tenant rights and employment law.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer class="bg-white py-12 px-6 border-t border-gray-200">
-      <div
-        class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-gray-400 text-sm font-medium"
-      >
-        <p>&copy; 2026 Seek Legal. Construction in progress.</p>
-        <div class="flex gap-8 mt-4 md:mt-0 opacity-50">
-          <span>Privacy Policy</span>
-          <span>Terms of Service</span>
-        </div>
-      </div>
-    </footer>
-
-    <style>
-      @keyframes float {
-        0%,
-        100% {
+      @keyframes floaty {
+        0% {
           transform: translateY(0px) rotate(0deg);
         }
-        50% {
-          transform: translateY(-20px) rotate(3deg);
+        100% {
+          transform: translateY(-15px) rotate(5deg);
         }
       }
+
+      .vignette {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(
+          circle at center,
+          transparent 20%,
+          rgba(0, 0, 0, 0.4) 100%
+        );
+        z-index: 0;
+      }
     </style>
+
+    <script>
+      interface Particle {
+        el: HTMLElement;
+        homeX: number;
+        homeY: number;
+        x: number;
+        y: number;
+        vx: number;
+        vy: number;
+      }
+
+      const COUNT = 20;
+      const ICON_SPACING = 120;
+      const MASS = 4.5;
+      const SPRING_K = 0.008;
+      const DAMPING = 0.96;
+      const MOUSE_RADIUS = 180;
+      const MOUSE_STRENGTH = 0.3;
+      const ZONE_RX = 380;
+      const ZONE_RY = 180;
+
+      const stage = document.getElementById("stage");
+      const items: Particle[] = [];
+      const mouse = { x: -9999, y: -9999 };
+
+      const paths: string[] = [
+        "M16 2l14 8v16l-14 8L2 26V10L16 2z",
+        "M16 0 A16 16 0 1 0 16 32 A16 16 0 1 0 16 0 Z",
+        "M16 2 L30 30 L2 30 Z",
+        "M4 4 H28 V28 H4 Z",
+        "M12 0h8v12h12v8h-12v12h-8v-12h-12v-8h12z",
+      ];
+
+      const colors: string[] = ["#eaddf7", "#cde4fd", "#ffffff", "#9c2331"];
+
+      const rand = (a: number, b: number) => a + Math.random() * (b - a);
+      const pick = (arr: string[]) =>
+        arr[Math.floor(Math.random() * arr.length)];
+
+      function isInsideOval(
+        x: number,
+        y: number,
+        cx: number,
+        cy: number,
+        rx: number,
+        ry: number
+      ) {
+        const dx = x - cx;
+        const dy = y - cy;
+        return (dx * dx) / (rx * rx) + (dy * dy) / (ry * ry) <= 1;
+      }
+
+      function createIcons() {
+        if (!stage) return;
+
+        const rect = stage.getBoundingClientRect();
+        const cx = rect.width / 2;
+        const cy = rect.height / 2;
+
+        stage.querySelectorAll(".icon-wrap").forEach((el) => el.remove());
+        items.length = 0;
+
+        for (let i = 0; i < COUNT; i++) {
+          const wrap = document.createElement("div");
+          wrap.className = "icon-wrap";
+
+          const ns = "http://www.w3.org/2000/svg";
+          const svg = document.createElementNS(ns, "svg");
+          svg.setAttribute("viewBox", "0 0 32 32");
+          svg.classList.add("icon-svg");
+
+          const path = document.createElementNS(ns, "path");
+          path.setAttribute("d", pick(paths));
+          path.setAttribute("fill", pick(colors));
+
+          wrap.style.opacity = rand(0.4, 0.9).toString();
+          wrap.style.transform = `rotate(${rand(-20, 20)}deg)`;
+
+          svg.appendChild(path);
+          wrap.appendChild(svg);
+          stage.appendChild(wrap);
+
+          let homeX = 0,
+            homeY = 0,
+            valid = false;
+          let attempts = 0;
+          let currentSpacing = ICON_SPACING;
+
+          while (!valid && attempts < 500) {
+            const padding = 60;
+            homeX = rand(padding, rect.width - padding);
+            homeY = rand(padding, rect.height - padding);
+
+            const inZone = isInsideOval(
+              homeX,
+              homeY,
+              cx,
+              cy,
+              ZONE_RX + 50,
+              ZONE_RY + 50
+            );
+
+            if (!inZone) {
+              let tooClose = false;
+              for (const other of items) {
+                const dist = Math.hypot(
+                  homeX - other.homeX,
+                  homeY - other.homeY
+                );
+                if (dist < currentSpacing) {
+                  tooClose = true;
+                  break;
+                }
+              }
+              if (!tooClose) valid = true;
+            }
+
+            attempts++;
+            if (attempts > 200) currentSpacing = ICON_SPACING * 0.8;
+            if (attempts > 350) currentSpacing = ICON_SPACING * 0.6;
+          }
+
+          items.push({
+            el: wrap as HTMLElement,
+            homeX: valid ? homeX : cx,
+            homeY: valid ? homeY : cy,
+            x: valid ? homeX : cx,
+            y: valid ? homeY : cy,
+            vx: 0,
+            vy: 0,
+          });
+        }
+      }
+
+      window.addEventListener("mousemove", (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      });
+
+      let resizeTimer: number | undefined;
+      window.addEventListener("resize", () => {
+        clearTimeout(resizeTimer);
+        // @ts-ignore
+        resizeTimer = setTimeout(createIcons, 200);
+      });
+
+      function tick() {
+        if (!stage) return;
+        const rect = stage.getBoundingClientRect();
+        const cx = rect.width / 2;
+        const cy = rect.height / 2;
+
+        for (const p of items) {
+          let targetX = p.homeX;
+          let targetY = p.homeY;
+
+          const dx = p.x - mouse.x;
+          const dy = p.y - mouse.y;
+          const dist = Math.hypot(dx, dy);
+
+          if (dist < MOUSE_RADIUS) {
+            const power =
+              (1 - dist / MOUSE_RADIUS) * MOUSE_RADIUS * MOUSE_STRENGTH;
+            const angle = Math.atan2(dy, dx);
+            targetX += Math.cos(angle) * power;
+            targetY += Math.sin(angle) * power;
+          }
+
+          const dxo = p.x - cx;
+          const dyo = p.y - cy;
+          const scaleY = ZONE_RX / ZONE_RY;
+          const scaledDy = dyo * scaleY;
+          const distOval = Math.hypot(dxo, scaledDy);
+
+          if (distOval < ZONE_RX) {
+            const overlap = ZONE_RX - distOval;
+            let nx = dxo / distOval;
+            let ny = scaledDy / distOval;
+            ny /= scaleY;
+
+            const pushFactor = overlap * 1.5;
+            targetX += nx * pushFactor;
+            targetY += ny * pushFactor;
+          }
+
+          const ax = (targetX - p.x) * SPRING_K;
+          const ay = (targetY - p.y) * SPRING_K;
+
+          p.vx += ax / MASS;
+          p.vy += ay / MASS;
+          p.vx *= DAMPING;
+          p.vy *= DAMPING;
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if (p.el) {
+            p.el.style.left = p.x + "px";
+            p.el.style.top = p.y + "px";
+            p.el.style.transform = `translate(-50%, -50%)`;
+          }
+        }
+        requestAnimationFrame(tick);
+      }
+
+      createIcons();
+      requestAnimationFrame(tick);
+    </script>
   </body>
 </html>
