@@ -60,7 +60,6 @@ import "../styles/global.css";
         font-family: "Inter", sans-serif;
       }
 
-      /* Hero Stage */
       .stage {
         position: relative;
         width: 100%;
@@ -122,7 +121,6 @@ import "../styles/global.css";
         box-shadow: 0 6px 20px rgba(234, 221, 247, 0.8);
       }
 
-      /* Floating Icons */
       .icon-wrap {
         position: absolute;
         width: 80px;
@@ -201,7 +199,13 @@ import "../styles/global.css";
 
       function createIcons() {
         if (!stage) return;
-        const rect = stage.getBoundingClientRect();
+
+        let w = stage.getBoundingClientRect().width;
+        let h = stage.getBoundingClientRect().height;
+        if (h < 100) h = window.innerHeight;
+        if (w < 100) w = window.innerWidth;
+
+        const rect = { width: w, height: h };
         const cx = rect.width / 2;
         const cy = rect.height / 2;
 
@@ -274,13 +278,18 @@ import "../styles/global.css";
 
       function tick() {
         if (!stage) return;
-        const rect = stage.getBoundingClientRect();
-        const cx = rect.width / 2;
-        const cy = rect.height / 2;
+        let w = stage.getBoundingClientRect().width;
+        let h = stage.getBoundingClientRect().height;
+        if (h < 100) h = window.innerHeight;
+        if (w < 100) w = window.innerWidth;
+
+        const cx = w / 2;
+        const cy = h / 2;
 
         for (const p of items) {
           let targetX = p.homeX;
           let targetY = p.homeY;
+
           const dx = p.x - mouse.x;
           const dy = p.y - mouse.y;
           const dist = Math.hypot(dx, dy);
@@ -327,8 +336,15 @@ import "../styles/global.css";
         requestAnimationFrame(tick);
       }
 
-      createIcons();
-      requestAnimationFrame(tick);
+      if (document.readyState === "complete") {
+        createIcons();
+        requestAnimationFrame(tick);
+      } else {
+        window.addEventListener("load", () => {
+          createIcons();
+          requestAnimationFrame(tick);
+        });
+      }
     </script>
   </body>
 </html>
